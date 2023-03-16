@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/themes/monolith.min.css"/>
+    <title>Vite App</title>
+  </head>
+  <body class="">
+    <nav class="border-b-2 border-black flex justify-between p-4 mb-5 ">
+      <a href="">Company Name</a>
+      <ul class="flex space-x-4 px-4">
+        <li>About</li>
+        <li>Contact</li>
+      </ul>
+    </nav>
+    <div class="w-full flex flex-col items-center space-y-4">
+      <canvas class="canvas w-10/12"></canvas>
+      <h6>Choose your color</h1>
+        <div class="border border-black">
+          <div class="color-picker"></div>
+        </div>
+    </div>
+    <script> 
+      var colorValue = 0xb8a58a;
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@simonwep/pickr/dist/pickr.min.js"></script>
+    <script type="module" src="./src/pickr.js"></script>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
