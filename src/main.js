@@ -2,41 +2,15 @@ import * as THREE from "three";
 import "./index.css";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { render } from "react-dom";
-//Scene
+
+
+//Scene and important objects
 const scene = new THREE.Scene();
-
-//Create Sphere
-// const geometry = new THREE.SphereGeometry(3,64,64);
-
-// var loader = new THREE.ObjectLoader();
-// loader.load(
-// 	// resource URL
-// 	"models/tshirt.json",
-
-// 	// onLoad callback
-// 	// Here the loaded data is assumed to be an object
-// 	function ( obj ) {
-// 		// Add the loaded object to the scene
-// 		console.log(obj)
-// 		scene.add( obj );
-// 	},
-
-// 	// onProgress callback
-// 	function ( xhr ) {
-// 		console.log( (xhr.loaded / xhr.total * 100) + '% loaded' );
-// 	},
-
-// 	// onError callback
-// 	function ( err ) {
-// 		console.error( 'An error happened' );
-// 	}
-// );
-
 const gltfLoader = new GLTFLoader();
-
 const canvas = document.querySelector(".canvas")
 
+
+// Model Loading
 
 var skullGeo;
 gltfLoader.load(
@@ -57,11 +31,6 @@ gltfLoader.load(
   }
 );
 
-// const material = new THREE.MeshStandardMaterial({
-//   color: "#00ff83"
-// })
-// const mesh = new THREE.Mesh(geometry,material);
-// scene.add(mesh);
 
 //Sizes
 var sizes = {
@@ -69,11 +38,7 @@ var sizes = {
   height: canvas.clientHeight,
 };
 
-//Light
-// const light = new THREE.DirectionalLight(0xffffff, 1);
-// const light = new THREE.PointLight(0xffffff, 1, 100);
-// light.position.set(0, 10, 10);
-// scene.add(light);
+//Lights
 const hemiLight = new THREE.HemisphereLight(0xffeeb1,0x080820, 4);
 scene.add(hemiLight)
 const spotLight = new THREE.SpotLight(0xffa95c,4);
@@ -111,16 +76,19 @@ window.addEventListener("resize", () => {
   renderer.setSize(sizes.width,sizes.height);
 });
 
+
+//animation funciton
 const loop = () => {
 	if(skullGeo){
 		const mesh = skullGeo.getObjectByName('Object_2'); 
 		const color = new THREE.Color(colorValue);
+    //changing the color of the model material 
 		mesh.material.color.set(color);
-		// console.log(skullGeo);
 		scene.add(skullGeo);
 	}
   renderer.render(scene, camera);
 	window.requestAnimationFrame(loop);
 };
 
+//calling the animation loop
 loop();
